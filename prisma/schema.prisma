@@ -1,0 +1,213 @@
+// Generated schema — modeled after beautyhqio conventions.
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String
+  passwordHash String
+  role         Role     @default(ANALYST)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+enum Role {
+  ADMIN
+  MANAGER
+  ANALYST
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  actorId   String?
+  actorName String?
+  action    String
+  entity    String
+  entityId  String?
+  detail    String?
+  createdAt DateTime @default(now())
+}
+
+model Team {
+  id        String   @id @default(cuid())
+  name String
+  department String
+  lead String
+  headcount Int
+  aiSpendMonthly Float
+  status String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  deliveryCycles DeliveryCycle[]
+  workItems WorkItem[]
+  reworkEvents ReworkEvent[]
+  approvalDelays ApprovalDelay[]
+  coordinationCosts CoordinationCost[]
+  qualitySignals QualitySignal[]
+  aiUsageRecords AiUsageRecord[]
+  productivityBaselines ProductivityBaseline[]
+  experiments Experiment[]
+  benchmarkSnapshots BenchmarkSnapshot[]
+  executiveReports ExecutiveReport[]
+}
+
+model DeliveryCycle {
+  id        String   @id @default(cuid())
+  name String
+  period String
+  itemsCompleted Int
+  avgCycleDays Float
+  medianCycleDays Float
+  status String
+  teamId String?
+  team Team? @relation(fields: [teamId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model WorkItem {
+  id        String   @id @default(cuid())
+  key String
+  title String
+  kind String
+  status String
+  cycleHours Float
+  reopenCount Int
+  teamId String?
+  team Team? @relation(fields: [teamId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ReworkEvent {
+  id        String   @id @default(cuid())
+  workItemRef String
+  cause String
+  addedHours Float
+  origin String
+  occurredAt DateTime?
+  status String
+  teamId String?
+  team Team? @relation(fields: [teamId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ApprovalDelay {
+  id        String   @id @default(cuid())
+  gate String
+  approver String
+  delayHours Float
+  workItemRef String
+  status String
+  resolvedAt DateTime?
+  teamId String?
+  team Team? @relation(fields: [teamId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model CoordinationCost {
+  id        String   @id @default(cuid())
+  activity String
+  participants String
+  hoursPerWeek Float
+  weeklyCost Float
+  category String
+  status String
+  teamId String?
+  team Team? @relation(fields: [teamId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model QualitySignal {
+  id        String   @id @default(cuid())
+  kind String
+  metric String
+  value Float
+  target Float
+  trend String
+  status String
+  teamId String?
+  team Team? @relation(fields: [teamId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model AiUsageRecord {
+  id        String   @id @default(cuid())
+  tool String
+  userRef String
+  tokens Float
+  cost Float
+  taskType String
+  usedAt DateTime?
+  teamId String?
+  team Team? @relation(fields: [teamId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ProductivityBaseline {
+  id        String   @id @default(cuid())
+  metric String
+  period String
+  baselineValue Float
+  currentValue Float
+  deltaPct Float
+  status String
+  teamId String?
+  team Team? @relation(fields: [teamId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Experiment {
+  id        String   @id @default(cuid())
+  hypothesis String
+  change String
+  successMetric String
+  status String
+  startedAt DateTime?
+  result String?
+  teamId String?
+  team Team? @relation(fields: [teamId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model BenchmarkSnapshot {
+  id        String   @id @default(cuid())
+  period String
+  metric String
+  teamValue Float
+  orgP50 Float
+  orgP90 Float
+  status String
+  teamId String?
+  team Team? @relation(fields: [teamId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ExecutiveReport {
+  id        String   @id @default(cuid())
+  period String
+  generatedFor String
+  headline String
+  body String
+  status String
+  publishedAt DateTime?
+  teamId String?
+  team Team? @relation(fields: [teamId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
