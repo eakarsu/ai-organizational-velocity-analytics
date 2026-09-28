@@ -1,0 +1,98 @@
+{
+  "velocity-brief": [
+    {
+      "id": "example-1",
+      "label": "Shorter cycles",
+      "values": {
+        "team": "Example platform team",
+        "period": "2026-08 versus 2026-07",
+        "cycleTrend": "Median cycle time 72h to 60h in fictional comparable cohorts.",
+        "qualityTrend": "Escaped defects 4 to 4; definitions and exposure require review."
+      }
+    },
+    {
+      "id": "example-2",
+      "label": "Quality trade-off",
+      "values": {
+        "team": "Example product team",
+        "period": "2026 Q3 versus Q2",
+        "cycleTrend": "Fictional throughput 40 to 55 items; item size may differ.",
+        "qualityTrend": "Reopened work 8% to 15%; investigate before attributing gains."
+      }
+    },
+    {
+      "id": "example-3",
+      "label": "Insufficient baseline",
+      "values": {
+        "team": "Example operations team",
+        "period": "First two weeks of adoption",
+        "cycleTrend": "Eight completed items; no comparable control period.",
+        "qualityTrend": "Quality review not yet completed; no causal conclusion supported."
+      }
+    }
+  ],
+  "friction-analysis": [
+    {
+      "id": "example-1",
+      "label": "Approval delays",
+      "values": {
+        "reworkSummary": "Example: 12 rework hours on missing acceptance criteria.",
+        "approvalSummary": "Example: median approval wait 36 hours across ten items.",
+        "coordinationSummary": "Three handoffs per item; owner unclear in four cases.",
+        "period": "2026-08"
+      }
+    },
+    {
+      "id": "example-2",
+      "label": "Rework loop",
+      "values": {
+        "reworkSummary": "Example: 30 rework hours after ambiguous specifications.",
+        "approvalSummary": "Example: two approval rounds per release.",
+        "coordinationSummary": "Design and engineering resolve the same questions in separate meetings.",
+        "period": "2026 Q3"
+      }
+    },
+    {
+      "id": "example-3",
+      "label": "Coordination load",
+      "values": {
+        "reworkSummary": "Example: 8 rework hours; coverage incomplete.",
+        "approvalSummary": "Example: reviewers available only once weekly.",
+        "coordinationSummary": "Six recurring meetings with overlapping attendance; durations supplied separately.",
+        "period": "2026-09-01 through 2026-09-14"
+      }
+    }
+  ],
+  "gains-vs-activity": [
+    {
+      "id": "example-1",
+      "label": "Stable quality",
+      "values": {
+        "aiUsage": "Fictional cohort: 100 AI-assisted tasks; 40 engineer hours recorded.",
+        "deliveryOutcomes": "40 delivered items compared with 35 in a prior period; scope differs.",
+        "qualityMetrics": "Four defects in each period; definitions held constant in this example.",
+        "meetingLoad": "Six meeting hours per person per month"
+      }
+    },
+    {
+      "id": "example-2",
+      "label": "More activity",
+      "values": {
+        "aiUsage": "Fictional cohort: 300 prompts and 200 generated drafts.",
+        "deliveryOutcomes": "Only eight accepted deliveries; no comparable baseline.",
+        "qualityMetrics": "Reviewers rejected 12 drafts for unsupported claims.",
+        "meetingLoad": "Twelve meeting hours per person per month"
+      }
+    },
+    {
+      "id": "example-3",
+      "label": "Mixed outcome",
+      "values": {
+        "aiUsage": "Fictional cohort: 60 assisted tasks across two teams.",
+        "deliveryOutcomes": "One team improved cycle time; the other lacks timestamp coverage.",
+        "qualityMetrics": "Rework increased in one cohort; selection bias not controlled.",
+        "meetingLoad": "Coordination time not measured; request source data."
+      }
+    }
+  ]
+}

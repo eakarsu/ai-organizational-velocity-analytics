@@ -124,21 +124,21 @@ export const entities: Record<string, EntityConfig> = {
 export const workflows: WorkflowConfig[] = [
   {
     slug: "velocity-brief",
-    title: "Velocity Briefing",
+    title: "Draft: Velocity Briefing",
     description: "Executive briefing on true delivery velocity.",
-    prompt: "You are an engineering-economics analyst. Brief the COO on whether AI increased true delivery velocity: cycle time trend, rework rate, quality signals, and net value.",
+    prompt: "Describe measured cycle time, rework, quality and costs using supplied evidence. State missing comparisons and avoid attributing causality to AI without a suitable evaluation design.",
     fields: ["team", "period", "cycleTrend", "qualityTrend"],
   },
   {
     slug: "friction-analysis",
-    title: "Friction Root-Cause",
+    title: "Draft: Friction Root-Cause",
     description: "Analyze the largest friction sources.",
     prompt: "You are an operations analyst. Rank rework events, approval delays, and coordination costs by cost impact; recommend the top three structural fixes.",
     fields: ["reworkSummary", "approvalSummary", "coordinationSummary", "period"],
   },
   {
     slug: "gains-vs-activity",
-    title: "Gains vs Activity Separator",
+    title: "Draft: Gains vs Activity Separator",
     description: "Separate genuine productivity gains from increased activity.",
     prompt: "You are a productivity researcher. Distinguish genuine productivity outcomes (more shipped value at equal quality) from mere activity (more AI output, more meetings).",
     fields: ["aiUsage", "deliveryOutcomes", "qualityMetrics", "meetingLoad"],

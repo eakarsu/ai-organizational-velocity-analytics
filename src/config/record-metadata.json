@@ -1,0 +1,543 @@
+{
+  "Team": {
+    "name": "Team",
+    "fields": [
+      {
+        "name": "name",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "department",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "lead",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "headcount",
+        "kind": "number",
+        "required": true,
+        "integer": true,
+        "min": 0
+      },
+      {
+        "name": "aiSpendMonthly",
+        "kind": "number",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      }
+    ]
+  },
+  "DeliveryCycle": {
+    "name": "DeliveryCycle",
+    "fields": [
+      {
+        "name": "name",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "period",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "itemsCompleted",
+        "kind": "number",
+        "required": true,
+        "integer": true
+      },
+      {
+        "name": "avgCycleDays",
+        "kind": "number",
+        "required": true
+      },
+      {
+        "name": "medianCycleDays",
+        "kind": "number",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "teamId",
+        "kind": "string",
+        "required": false,
+        "relation": "Team"
+      }
+    ],
+    "parent": {
+      "field": "teamId",
+      "entity": "Team"
+    }
+  },
+  "WorkItem": {
+    "name": "WorkItem",
+    "fields": [
+      {
+        "name": "key",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "title",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "kind",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "cycleHours",
+        "kind": "number",
+        "required": true,
+        "min": 0
+      },
+      {
+        "name": "reopenCount",
+        "kind": "number",
+        "required": true,
+        "integer": true,
+        "min": 0
+      },
+      {
+        "name": "teamId",
+        "kind": "string",
+        "required": false,
+        "relation": "Team"
+      }
+    ],
+    "parent": {
+      "field": "teamId",
+      "entity": "Team"
+    }
+  },
+  "ReworkEvent": {
+    "name": "ReworkEvent",
+    "fields": [
+      {
+        "name": "workItemRef",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "cause",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "addedHours",
+        "kind": "number",
+        "required": true,
+        "min": 0
+      },
+      {
+        "name": "origin",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "occurredAt",
+        "kind": "date",
+        "required": false
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "teamId",
+        "kind": "string",
+        "required": false,
+        "relation": "Team"
+      }
+    ],
+    "parent": {
+      "field": "teamId",
+      "entity": "Team"
+    }
+  },
+  "ApprovalDelay": {
+    "name": "ApprovalDelay",
+    "fields": [
+      {
+        "name": "gate",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "approver",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "delayHours",
+        "kind": "number",
+        "required": true,
+        "min": 0
+      },
+      {
+        "name": "workItemRef",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "resolvedAt",
+        "kind": "date",
+        "required": false
+      },
+      {
+        "name": "teamId",
+        "kind": "string",
+        "required": false,
+        "relation": "Team"
+      }
+    ],
+    "parent": {
+      "field": "teamId",
+      "entity": "Team"
+    }
+  },
+  "CoordinationCost": {
+    "name": "CoordinationCost",
+    "fields": [
+      {
+        "name": "activity",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "participants",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "hoursPerWeek",
+        "kind": "number",
+        "required": true,
+        "min": 0
+      },
+      {
+        "name": "weeklyCost",
+        "kind": "number",
+        "required": true,
+        "min": 0
+      },
+      {
+        "name": "category",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "teamId",
+        "kind": "string",
+        "required": false,
+        "relation": "Team"
+      }
+    ],
+    "parent": {
+      "field": "teamId",
+      "entity": "Team"
+    }
+  },
+  "QualitySignal": {
+    "name": "QualitySignal",
+    "fields": [
+      {
+        "name": "kind",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "metric",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "value",
+        "kind": "number",
+        "required": true
+      },
+      {
+        "name": "target",
+        "kind": "number",
+        "required": true
+      },
+      {
+        "name": "trend",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "teamId",
+        "kind": "string",
+        "required": false,
+        "relation": "Team"
+      }
+    ],
+    "parent": {
+      "field": "teamId",
+      "entity": "Team"
+    }
+  },
+  "AiUsageRecord": {
+    "name": "AiUsageRecord",
+    "fields": [
+      {
+        "name": "tool",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "userRef",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "tokens",
+        "kind": "number",
+        "required": true
+      },
+      {
+        "name": "cost",
+        "kind": "number",
+        "required": true,
+        "min": 0
+      },
+      {
+        "name": "taskType",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "usedAt",
+        "kind": "date",
+        "required": false
+      },
+      {
+        "name": "teamId",
+        "kind": "string",
+        "required": false,
+        "relation": "Team"
+      }
+    ],
+    "parent": {
+      "field": "teamId",
+      "entity": "Team"
+    }
+  },
+  "ProductivityBaseline": {
+    "name": "ProductivityBaseline",
+    "fields": [
+      {
+        "name": "metric",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "period",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "baselineValue",
+        "kind": "number",
+        "required": true
+      },
+      {
+        "name": "currentValue",
+        "kind": "number",
+        "required": true
+      },
+      {
+        "name": "deltaPct",
+        "kind": "number",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "teamId",
+        "kind": "string",
+        "required": false,
+        "relation": "Team"
+      }
+    ],
+    "parent": {
+      "field": "teamId",
+      "entity": "Team"
+    }
+  },
+  "Experiment": {
+    "name": "Experiment",
+    "fields": [
+      {
+        "name": "hypothesis",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "change",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "successMetric",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "startedAt",
+        "kind": "date",
+        "required": false
+      },
+      {
+        "name": "result",
+        "kind": "string",
+        "required": false
+      },
+      {
+        "name": "teamId",
+        "kind": "string",
+        "required": false,
+        "relation": "Team"
+      }
+    ],
+    "parent": {
+      "field": "teamId",
+      "entity": "Team"
+    }
+  },
+  "BenchmarkSnapshot": {
+    "name": "BenchmarkSnapshot",
+    "fields": [
+      {
+        "name": "period",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "metric",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "teamValue",
+        "kind": "number",
+        "required": true
+      },
+      {
+        "name": "orgP50",
+        "kind": "number",
+        "required": true
+      },
+      {
+        "name": "orgP90",
+        "kind": "number",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "teamId",
+        "kind": "string",
+        "required": false,
+        "relation": "Team"
+      }
+    ],
+    "parent": {
+      "field": "teamId",
+      "entity": "Team"
+    }
+  },
+  "ExecutiveReport": {
+    "name": "ExecutiveReport",
+    "fields": [
+      {
+        "name": "period",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "generatedFor",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "headline",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "body",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "status",
+        "kind": "string",
+        "required": true
+      },
+      {
+        "name": "publishedAt",
+        "kind": "date",
+        "required": false
+      },
+      {
+        "name": "teamId",
+        "kind": "string",
+        "required": false,
+        "relation": "Team"
+      }
+    ],
+    "parent": {
+      "field": "teamId",
+      "entity": "Team"
+    }
+  }
+}
